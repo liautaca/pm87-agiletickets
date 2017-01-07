@@ -112,6 +112,11 @@ public class Sessao {
 
         return !naoTemEspaco;
 	}
+	
+	public int totalingressosdisponiveis() {
+		return (getTotalIngressos() - getIngressosReservados()) ;
+		
+	}
 
 	public void setPreco(BigDecimal preco) {
 		this.preco = preco;
