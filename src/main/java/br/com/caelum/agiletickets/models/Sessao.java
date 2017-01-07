@@ -117,6 +117,11 @@ public class Sessao {
 		return (getTotalIngressos() - getIngressosReservados()) ;
 		
 	}
+	
+
+	public double getPercentualdisponivel() {
+		return totalingressosdisponiveis()  / getTotalIngressos().doubleValue();
+	}
 
 	public void setPreco(BigDecimal preco) {
 		this.preco = preco;
