@@ -25,7 +25,7 @@ public class IndexController {
 
 	@Get("/")
 	public void index() {
-		result.include("sessoes", agenda.proximasSessoes(10));
+		result.include("sessoes", agenda.proximasSessoes(100));
 	}
 	
 }
