@@ -113,14 +113,28 @@ public class Sessao {
         return !naoTemEspaco;
 	}
 	
-	public int totalingressosdisponiveis() {
-		return (getTotalIngressos() - getIngressosReservados()) ;
-		
-	}
-	
+
 
 	public double getPercentualdisponivel() {
-		return totalingressosdisponiveis()  / getTotalIngressos().doubleValue();
+		return getIngressosDisponiveis() / getTotalIngressos().doubleValue();
+	}
+	
+	public BigDecimal getValordaSessao() {
+		BigDecimal preco;
+		//quando estiver acabando os ingressos... 
+		if( getPercentualdisponivel()<= getEspetaculo().getTipo().getPercentual()) { 
+			preco = getPreco().add(getPreco().multiply(getEspetaculo().getTipo().getAliquota()));
+		} else {
+			preco = getPreco();
+		}
+		
+		if(getEspetaculo().getTipo().equals(TipoDeEspetaculo.BALLET) ||getEspetaculo().getTipo().equals(TipoDeEspetaculo.ORQUESTRA)) {
+			if(getDuracaoEmMinutos() > 60){
+				preco = preco.add(getPreco().multiply(BigDecimal.valueOf(0.10)));
+			}
+			
+		}
+		return preco;
 	}
 
 	public void setPreco(BigDecimal preco) {
