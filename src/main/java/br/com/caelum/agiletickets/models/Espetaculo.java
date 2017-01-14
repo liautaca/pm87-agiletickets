@@ -2,6 +2,7 @@ package br.com.caelum.agiletickets.models;
 
 import static com.google.common.collect.Lists.newArrayList;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -111,7 +112,7 @@ public class Espetaculo {
 
 		} else {
 			int intervalorDeSemamas = Weeks.weeksBetween(inicio, fim).getWeeks();
-			
+
 			populaListaSemanal(inicio, horario, lista, intervalorDeSemamas);
 		}
 		return lista;
@@ -141,6 +142,9 @@ public class Espetaculo {
 	public Sessao criaSessao(LocalDate inicio, LocalTime horario, DateTime data) {
 		Sessao sessao = new Sessao();
 		sessao.setEspetaculo(this);
+		sessao.setDuracaoEmMinutos(180);
+		sessao.setTotalIngressos(100);
+		sessao.setPreco(new BigDecimal(50.0));
 		sessao.setInicio(data);
 		return sessao;
 	}

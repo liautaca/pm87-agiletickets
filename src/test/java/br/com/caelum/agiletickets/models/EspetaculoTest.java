@@ -107,5 +107,26 @@ public class EspetaculoTest {
 		
 	}
 	
+	@Test
+	public void naoDeveCriarSessaoComDataInicioDepoisQueDataFimSemanal() {
+		Espetaculo espetaculo = new  Espetaculo();
+		LocalTime horario = LocalTime.now();
+		LocalDate fim = LocalDate.now();
+		LocalDate inicio = fim.plusWeeks(2);
+		List<Sessao> criaSessoes = espetaculo.criaSessoes(inicio, fim, horario, Periodicidade.SEMANAL);
+		
+	   assertEquals(0, criaSessoes.size());
+	}
+	
+	@Test
+	public void naoDeveCriarSessaoComDataInicioDepoisQueDataFimDiario() {
+		Espetaculo espetaculo = new  Espetaculo();
+		LocalTime horario = LocalTime.now();
+		LocalDate fim = LocalDate.now();
+		LocalDate inicio = fim.plusDays(2);
+		List<Sessao> criaSessoes = espetaculo.criaSessoes(inicio, fim, horario, Periodicidade.DIARIA);
+		
+	   assertEquals(0, criaSessoes.size());		
+	}
 	
 }
