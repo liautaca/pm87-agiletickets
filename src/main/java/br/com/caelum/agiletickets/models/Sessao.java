@@ -136,6 +136,12 @@ public class Sessao {
 		}
 		return preco;
 	}
+	
+	public BigDecimal getValorTotalpelaQtd(Integer quantidade){
+		BigDecimal preco=getValordaSessao();
+
+		return preco.multiply(BigDecimal.valueOf(quantidade));
+	}
 
 	public void setPreco(BigDecimal preco) {
 		this.preco = preco;
